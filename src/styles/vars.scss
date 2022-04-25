@@ -1,0 +1,64 @@
+$family--default: 'Roboto' ,'Montserrat', Avenir, Helvetica, Arial, sans-serif;
+
+// c - color
+// cd - color dark
+
+$c-border:                  #646464;
+$cd-border:                 #646464;
+
+$c-special:                 #119DA4;
+$cd-special:                #F17105;
+
+$c-special__light:          rgba(17, 157, 164, 0.65);
+
+$cd-special__light:         #F17105;
+
+$c-bg:                      #CECCCE;
+//$cd-bg:                     #F7F8F9;
+
+$c-text:                    #282828;
+$cd-text:                   rgba(255, 255, 255, 0.87);
+
+
+
+$transition:                all .3s ease-in-out;
+
+
+
+$desktop:   'only screen and (max-width: 1279px)';
+$tablet:    'only screen and (max-width: 1023px)';
+$mobile:    'only screen and (max-width: 767px)';
+
+
+
+
+//$c_input__default:          #F7F2EE;
+//$c_input__disabled:         #F0F0F0;
+//$c_input__placeholder:      #B3A499;
+//
+//$c_btn__border:             #646464;
+//$c_btn__border_hover:       #282828;
+//
+//
+//$c_hr:                      #E6E6E6;
+//$c_active:                  #E0E0E0;
+//
+//$c_text_main:               #282828;
+//$c_text_main__dark:         #8C8C8C;
+//$c_text__label:             #888888;
+//
+//$c_special__main:           #A67F63;
+//$c_special__secondary:      #B3A499;
+//$c_special__intence:        #8C6B53;
+//$c_special__bg:             #E5D4C6;
+//
+//$c_green:                   #6BC480;
+//$c_error:                   #D55D42;
+//
+//$c_indication__good:        #6BC480;
+//$c_indication__bad:         #F29D38;
+//$c_indication__very-bad:    #D55D42;
+//
+//$c_indication__good-bg:     #E1F3E6;
+//$c_indication__bad-bg:      #FCEBD7;
+//$c_indication__very-bad-bg: #F7DFD9;
