@@ -3,7 +3,7 @@ $family--default: 'Roboto' ,'Montserrat', Avenir, Helvetica, Arial, sans-serif;
 // c - color
 // cd - color dark
 
-$c-border:                  #646464;
+$c-border:                  #CECCCE;
 $cd-border:                 #646464;
 
 $c-special:                 #119DA4;
@@ -13,8 +13,8 @@ $c-special__light:          rgba(17, 157, 164, 0.65);
 
 $cd-special__light:         #F17105;
 
-$c-bg:                      #CECCCE;
-//$cd-bg:                     #F7F8F9;
+$c-bg:                      #FFF;
+$c-input-bg:                #FFF;
 
 $c-text:                    #282828;
 $cd-text:                   rgba(255, 255, 255, 0.87);

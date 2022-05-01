@@ -1,5 +1,4 @@
 <script>
-
     let val = false;
     // <!--export default {-->
     // <!--    props: {-->
@@ -30,7 +29,6 @@
     const changeVal = () => {
         console.log('asdf')
     }
-
     // }
 </script>
 
