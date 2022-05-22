@@ -1,7 +1,11 @@
 <script>
+    export let isPlay;
+
     let classes = "btn play";
 
-    function toggleClass() {
+    function playPause() {
+        isPlay = !isPlay;
+
         if ( classes.includes('play') ) {
             classes = classes.replace("play", "pause");
         } else {
@@ -11,7 +15,7 @@
 </script>
 
 <div class="ui-play-pause">
-    <div class={classes} on:click={toggleClass}>
+    <div class={classes} on:click={playPause}>
         <span class="ui-play-pause__bar ui-play-pause__bar-1"></span>
         <span class="ui-play-pause__bar ui-play-pause__bar-2"></span>
         <span class="ui-play-pause__bar ui-play-pause__bar-3"></span>
@@ -41,8 +45,8 @@
             display: inline-block;
             position: absolute;
             top: 10px;
-            left: 0;
-            width: 3px;
+            left: 6px;
+            width: 4px;
             height: 50px;
             border-radius: 5px;
             background-color: $c_special;

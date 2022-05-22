@@ -62,6 +62,11 @@
                 <Checkbox>
                     {n.name}
                 </Checkbox>
+                <ThreeDots
+                  isColored
+                >
+
+                </ThreeDots>
             </div>
         {/each}
 
@@ -75,7 +80,7 @@
     </div>
 </div>
 
-<style lang="scss">
+<style lang="scss" global>
     .todolist {
         width: 100%;
 
@@ -102,7 +107,6 @@
             font-weight: 700;
             justify-content: space-between;
             height: 58px;
-            text-transform: uppercase;
             padding: 0 28px;
             z-index: 1;
         }
@@ -122,10 +126,23 @@
             display: block;
             line-height: 1.2;
             padding: 0 8px;
+            position: relative;
             transition: $transition;
 
+            .ui-three-dots {
+                display: none !important;
+                transition: $transition;
+                position: absolute !important;
+                top: 13px;
+                right: 20px;
+            }
+
             &:hover {
-                background-color: #F4F5F7;
+                background-color: $c-hover;
+
+                .ui-three-dots {
+                    display: block !important;
+                }
             }
         }
 

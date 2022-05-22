@@ -1,31 +1,5 @@
 <script>
     let val = false;
-    // <!--export default {-->
-    // <!--    props: {-->
-    // <!--        checked: Boolean,-->
-    // <!--    },-->
-    // <!--    data() {-->
-    // <!--        return {-->
-    // <!--            isChecked: this.checked-->
-    // <!--        }-->
-    // <!--    },-->
-    // <!--    methods: {-->
-    // <!--        click() {-->
-    // <!--            this.$emit('click', this.isChecked)-->
-    // <!--        }-->
-    // <!--    },-->
-    // <!--    watch: {-->
-    // <!--        checked(newVal) {-->
-    // <!--            this.isChecked = newVal;-->
-    // <!--        },-->
-    // <!--        isChecked(newVal) {-->
-    // <!--            this.$emit('input', newVal);-->
-    // <!--        }-->
-    // <!--    },-->
-    // <!--    created() {-->
-    // <!--        this.$emit('input', this.checked);-->
-    // <!--    }-->
-
     const changeVal = () => {
         console.log('asdf')
     }
