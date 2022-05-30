@@ -1,15 +1,55 @@
 <script>
-    let val = false;
+    export let isDone;
+    export let isEditing;
+    export let text;
+    export let index;
+    let input;
+
+    import { createEventDispatcher } from 'svelte';
+
+    const dispatch = createEventDispatcher();
+
     const changeVal = () => {
         console.log('asdf')
     }
-    // }
+
+    const onKeyPress = (event) => {
+        if (event.key === 'Enter' && event.shiftKey) {
+            console.log('Add new one here');
+        }
+    }
+
+    const stopEditing = () => {
+        isEditing = false;
+        dispatch('setValue', { text, index });
+    }
+
+    export function focus() {
+        input.focus();
+    }
 </script>
 
 <div>
     <label class="ui-checkbox">
-        <slot />
-        <input type="checkbox" value={val} onChange={changeVal}>
+        {#if isEditing}
+            <div class='relative'>
+                <label
+                  class="ui-checkbox__input"
+                  contenteditable="true"
+                  on:keypress={onKeyPress}
+                  on:blur={stopEditing}
+                  bind:innerHTML={text}
+                  bind:this={input}
+                >
+                    {text}
+                </label>
+                <span class='border'></span>
+            </div>
+        {:else}
+            <slot />
+        {/if}
+
+        <input type="checkbox" checked={isDone} onChange={changeVal}>
         <span class="ui-checkbox_checkmark"></span>
     </label>
 </div>
@@ -21,7 +61,7 @@
     display: block;
     //font-size: 14px;
     font-weight: 600;
-    line-height: 24px;
+    line-height: 32px;
     padding: 18px 7px 18px 48px;
     position: relative;
     text-align: left;
@@ -31,7 +71,29 @@
     user-select: none;
   }
 
-  /* Hide the browser's default checkbox */
+  .border {
+      height: calc(100% + 5px);
+      border: 2px solid $c-border;
+      border-radius: 7px;
+      bottom: -2px;
+      display: block;
+      padding: 0 12px;
+      position: absolute;
+      right: 12px;
+      width: 100%;
+  }
+
+  .ui-checkbox__input {
+      cursor: text;
+      display: block;
+      padding: 0 12px;
+      position: relative;
+      right: 12px;
+      width: 100%;
+      z-index: 1;
+  }
+
+  /* Hide the browser's default checkbox and input */
   .ui-checkbox input {
     cursor: pointer;
     height: 0;
@@ -46,8 +108,8 @@
     position: absolute;
     top: 17px;
     left: 0;
-    height: 24px;
-    width: 24px;
+    height: 32px;
+    width: 32px;
     border: 4px solid $c-special;
   }
 
@@ -66,9 +128,9 @@
   /* Create the checkmark/indicator (hidden when not checked) */
   .ui-checkbox_checkmark:after {
     content: "";
-    left: -8px;
+    left: -5px;
     position: absolute;
-    top: -14px;
+    top: -7px;
     display: none;
   }
 

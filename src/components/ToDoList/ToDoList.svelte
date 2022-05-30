@@ -3,16 +3,18 @@
     import Checkbox from '../ui/Checkbox.svelte'
     import ThreeDots from '../ui/ThreeDots.svelte'
     import MdAdd from 'svelte-icons/md/MdAdd.svelte'
+    import IconAdd from '../icons/Add.svelte'
 
     let list = [
-        {name: "foo", id: 0},
-        {name: "bar", id: 1},
-        {name: "bob", id: 2},
-        {name: "jean", id: 3},
-        {name: "make a better world make a better world", id: 4}
+        {text: "foo", id: 0, isEditing: false, isDone: false},
+        {text: "bar", id: 1, isEditing: false, isDone: true},
+        {text: "bob", id: 2, isEditing: false, isDone: false},
+        {text: "jean", id: 3, isEditing: false, isDone: false},
+        {text: "make a better world make a better world", id: 5, isEditing: false, isDone: false}
     ];
 
     let hovering = false;
+    let field;
 
     const drop = (event, target) => {
         event.dataTransfer.dropEffect = 'move';
@@ -36,6 +38,37 @@
         const start = i;
         event.dataTransfer.setData('text/plain', start);
     }
+
+    function handleValue(event) {
+        const detail = event.detail;
+
+        detail.text = detail.text.replace(/&nbsp;/g, ' ');
+
+        if (detail.text.trim().length === 0) {
+            list[detail.index].isEditing = false;
+            list.splice(detail.index, 1);
+        } else {
+            list[detail.index].text = detail.text;
+            list[detail.index].isEditing = false;
+        }
+    }
+
+    function addNewItem() {
+        console.log('ggg');
+
+        const id = Math.random();
+
+        list.push({
+            text: "",
+            id,
+            isEditing: false,
+            isDone: false
+        });
+
+        list[list.length - 1].isEditing = true;
+
+        console.log(list);
+    }
 </script>
 
 <div class="todolist">
@@ -48,7 +81,7 @@
     </div>
 
     <div class='todolist-field'>
-        {#each list as n, index  (n.name)}
+        {#each list as n, index  (n.id)}
             <div
               class="todolist-item"
               animate:flip
@@ -59,21 +92,22 @@
               on:dragenter={() => hovering = index}
               class:is-active={hovering === index}
             >
-                <Checkbox>
-                    {n.name}
+                <Checkbox {...n} {index} on:setValue={handleValue} bind:this={field}>
+                    {n.text}
                 </Checkbox>
-                <ThreeDots
-                  isColored
-                >
 
-                </ThreeDots>
+                {#if !n.isEditing}
+                    <ThreeDots isColored>
+                    </ThreeDots>
+                {/if}
             </div>
         {/each}
 
-        <button class='todolist-add-item'>
-            <span class='icon'>
-                <MdAdd class='icon'/>
-            </span>
+        <button
+          class='todolist-add-item'
+          on:click={addNewItem}
+        >
+            <IconAdd />
 
             Add task
         </button>
@@ -85,15 +119,32 @@
         width: 100%;
 
         &-add-item {
-            .icon {
-                height: 30px;
-                width: 30px;
+            align-items: center;
+            color: $c-border;
+            cursor: pointer;
+            display: flex;
+            font-size: 19px;
+            transition: $transition;
 
-                :global(svg) {
-                    height: 30px;
-                    width: 30px;
+            .icon-add {
+                margin: 0 12px 0 0;
+            }
+
+            &:hover {
+                color: $cd-special;
+
+                .icon-add__circle {
+                    fill: $cd-special;
+                }
+
+                .icon-add__plus {
+                    fill: #ffffff;
                 }
             }
+        }
+
+        &__textarea {
+            width: 100%;
         }
 
         &-header {
@@ -116,7 +167,7 @@
             border-bottom: 4px solid $c-border;
             border-right: 4px solid $c-border;
             border-radius: 0 0 20px 20px;
-            padding: 8px;
+            padding: 8px 8px 15px;
         }
 
         &-item {
