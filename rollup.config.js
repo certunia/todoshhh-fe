@@ -6,8 +6,16 @@ import { terser } from 'rollup-plugin-terser';
 import { svelteSVG } from 'rollup-plugin-svelte-svg';
 import scss from 'rollup-plugin-scss';
 import sveltePreprocess from 'svelte-preprocess';
+import replace from '@rollup/plugin-replace';
+import { config } from 'dotenv';
 
 const production = !process.env.ROLLUP_WATCH;
+
+// replacing the env files
+const configToReplace = {};
+for (const [key, v] of Object.entries(config().parsed)) {
+	configToReplace[`process.env.${key}`] = `'${v}'`;
+}
 
 function serve() {
 	let server;
@@ -39,6 +47,11 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+		replace({
+			include: ["src/**/*.js", "src/**/*.svelte"],
+			preventAssignment: true,
+			values: configToReplace,
+		}),
 		svelte({
 			preprocess: sveltePreprocess({
 				scss: { prependData: `@import 'src/styles/styles.scss';`},
