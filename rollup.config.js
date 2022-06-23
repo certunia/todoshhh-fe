@@ -11,7 +11,6 @@ import { config } from 'dotenv';
 
 const production = !process.env.ROLLUP_WATCH;
 
-// replacing the env files
 const configToReplace = {};
 for (const [key, v] of Object.entries(config().parsed)) {
 	configToReplace[`process.env.${key}`] = `'${v}'`;
@@ -47,6 +46,7 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+		// replacing the env variables with values in js and svelte files
 		replace({
 			include: ["src/**/*.js", "src/**/*.svelte"],
 			preventAssignment: true,
