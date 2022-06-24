@@ -1,6 +1,6 @@
 <script>
     export let isDone;
-    export let isEditing;
+    export let isEdited;
     export let text;
     export let index;
     let input;
@@ -20,7 +20,7 @@
     }
 
     const stopEditing = () => {
-        isEditing = false;
+        isEdited = false;
         dispatch('setValue', { text, index });
     }
 
@@ -31,7 +31,7 @@
 
 <div>
     <label class="ui-checkbox">
-        {#if isEditing}
+        {#if isEdited}
             <div class='relative'>
                 <label
                   class="ui-checkbox__input"

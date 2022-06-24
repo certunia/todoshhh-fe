@@ -1,17 +1,11 @@
 <script>
-    import {flip} from 'svelte/animate';
-    import Checkbox from '../ui/Checkbox.svelte'
-    import ThreeDots from '../ui/ThreeDots.svelte'
-    import MdAdd from 'svelte-icons/md/MdAdd.svelte'
-    import IconAdd from '../icons/Add.svelte'
+    import { flip } from 'svelte/animate';
+    import Checkbox from '../ui/Checkbox.svelte';
+    import ThreeDots from '../ui/ThreeDots.svelte';
+    import IconAdd from '../icons/Add.svelte';
+    import { getTodoList, todoList } from '../../store/todoList.js';
 
-    let list = [
-        {text: "foo", id: 0, isEditing: false, isDone: false},
-        {text: "bar", id: 1, isEditing: false, isDone: true},
-        {text: "bob", id: 2, isEditing: false, isDone: false},
-        {text: "jean", id: 3, isEditing: false, isDone: false},
-        {text: "make a better world make a better world", id: 5, isEditing: false, isDone: false}
-    ];
+    getTodoList()
 
     let hovering = false;
     let field;
@@ -19,7 +13,7 @@
     const drop = (event, target) => {
         event.dataTransfer.dropEffect = 'move';
         const start = parseInt(event.dataTransfer.getData("text/plain"));
-        const newTracklist = list
+        const newTracklist = $todoList
 
         if (start < target) {
             newTracklist.splice(target + 1, 0, newTracklist[start]);
@@ -28,15 +22,14 @@
             newTracklist.splice(target, 0, newTracklist[start]);
             newTracklist.splice(start + 1, 1);
         }
-        list = newTracklist
+        $todoList = newTracklist
         hovering = null
     }
 
     const dragstart = (event, i) => {
         event.dataTransfer.effectAllowed = 'move';
         event.dataTransfer.dropEffect = 'move';
-        const start = i;
-        event.dataTransfer.setData('text/plain', start);
+        event.dataTransfer.setData('text/plain', i);
     }
 
     function handleValue(event) {
@@ -45,29 +38,25 @@
         detail.text = detail.text.replace(/&nbsp;/g, ' ');
 
         if (detail.text.trim().length === 0) {
-            list[detail.index].isEditing = false;
-            list.splice(detail.index, 1);
+            $todoList[detail.index].isEdited = false;
+            $todoList.splice(detail.index, 1);
         } else {
-            list[detail.index].text = detail.text;
-            list[detail.index].isEditing = false;
+            $todoList[detail.index].text = detail.text;
+            $todoList[detail.index].isEdited = false;
         }
     }
 
     function addNewItem() {
-        console.log('ggg');
-
         const id = Math.random();
 
-        list.push({
+        $todoList.push({
             text: "",
             id,
-            isEditing: false,
+            isEdited: false,
             isDone: false
         });
 
-        list[list.length - 1].isEditing = true;
-
-        console.log(list);
+        $todoList[$todoList.length - 1].isEdited = true;
     }
 </script>
 
@@ -81,7 +70,7 @@
     </div>
 
     <div class='todolist-field'>
-        {#each list as n, index  (n.id)}
+        {#each $todoList as n, index  (n._id)}
             <div
               class="todolist-item"
               animate:flip
@@ -96,7 +85,7 @@
                     {n.text}
                 </Checkbox>
 
-                {#if !n.isEditing}
+                {#if !n.isEdited}
                     <ThreeDots isColored>
                     </ThreeDots>
                 {/if}
