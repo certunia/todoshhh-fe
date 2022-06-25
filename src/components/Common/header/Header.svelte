@@ -3,12 +3,13 @@
 	import AccountSvg from './account.svg';
 	import LogoSvg from './logo.svg';
 	import SettingsSvg from './settings.svg';
+	import MainLogo from '../../icons/MainLogo.svelte';
 </script>
 
 <header class="header">
 	<div class="header__logo">
 		<a href="/">
-			<LogoSvg alt="ToDoShh" />
+			<MainLogo />
 		</a>
 	</div>
 
