@@ -55,6 +55,7 @@ export default {
 		svelte({
 			preprocess: sveltePreprocess({
 				scss: { prependData: `@import 'src/styles/styles.scss';`},
+				postcss: true,
 			}),
 			compilerOptions: {
 				dev: !production

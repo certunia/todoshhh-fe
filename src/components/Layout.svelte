@@ -8,6 +8,10 @@
 
     <Music />
 
+    <h1 class="text-3xl font-bold underline">
+        Here is some tailwind!
+    </h1>
+
     <main>
         <slot />
     </main>

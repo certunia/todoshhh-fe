@@ -5,13 +5,14 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "start": "sirv public --no-clear --port 8089"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "autoprefixer": "^10.4.8",
     "node-sass": "^7.0.1",
-    "postcss": "^8.4.14",
+    "postcss": "^8.4.16",
     "rollup": "^2.3.4",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-scss": "^3.0.0",
@@ -20,7 +21,8 @@
     "sass": "^1.50.0",
     "scss": "^0.2.4",
     "svelte": "^3.0.0",
-    "svelte-preprocess": "^4.10.5"
+    "svelte-preprocess": "^4.10.5",
+    "tailwindcss": "^3.1.8"
   },
   "dependencies": {
     "@rollup/plugin-replace": "^4.0.0",

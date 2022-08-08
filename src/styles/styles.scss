@@ -5,7 +5,9 @@
 //@import "../fonts/montserrat/index";
 // Always first END
 
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "./app";
 
 // Always last START
