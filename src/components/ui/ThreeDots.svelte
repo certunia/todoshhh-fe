@@ -1,29 +1,16 @@
 <script>
-	let isShown = false;
 	export let isColored;
 	export let shadow;
-
-	const handleClick = () => {
-		isShown = !isShown
-	}
-
-	const handleClose = () => {
-		isShown = false
-	}
 </script>
 
 <div class="ui-three-dots {isColored ? 'ui-three-dots_colored' : '' }">
-	<div class='ui-three-dots__backdrop' on:click={handleClose}></div>
-	<button class='ui-three-dots__background' style='box-shadow: {shadow}' on:click={handleClick}>
+	<button class='ui-three-dots__background' style='box-shadow: {shadow}'>
 		<span class='ui-three-dots__btn'>
 			<span></span>
 			<span></span>
 			<span></span>
 		</span>
 	</button>
-	{#if isShown}
-		<slot></slot>
-	{/if}
 </div>
 
 <style lang="scss">

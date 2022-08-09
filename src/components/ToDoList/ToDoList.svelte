@@ -2,6 +2,7 @@
     import { flip } from 'svelte/animate';
     import Checkbox from '../ui/Checkbox.svelte';
     import ThreeDots from '../ui/ThreeDots.svelte';
+    import Dropdown from '../ui/Dropdown.svelte';
     import IconAdd from '../icons/Add.svelte';
     import { getTodoList, todoList } from '../../store/todoList.js';
 
@@ -58,15 +59,22 @@
 
         $todoList[$todoList.length - 1].isEdited = true;
     }
+
+    const items = [{
+        href: '/profile',
+        text: 'asdf'
+    }]
 </script>
 
 <div class="todolist">
     <div class='todolist-header'>
         ToDo
 
-        <ThreeDots>
+        <Dropdown {items}>
+            <ThreeDots>
 
-        </ThreeDots>
+            </ThreeDots>
+        </Dropdown>
     </div>
 
     <div class='todolist-field'>
