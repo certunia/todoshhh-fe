@@ -3,10 +3,12 @@ import axios from "axios";
 const api = axios.create();
 
 api.defaults.baseURL = process.env.API_URL;
+api.defaults.withCredentials = true;
+api.defaults.credentials = 'include';
 
 // interceptor to catch errors
 const errorInterceptor = error => {
-	window.alert('Server error...')
+	// window.alert('Server error...')
 
 	// switch(error.response.status) {
 	// 	case 400:

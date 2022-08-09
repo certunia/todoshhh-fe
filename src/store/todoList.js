@@ -4,7 +4,7 @@ import api from '../services/api'
 export const todoList = writable([]);
 
 export const getTodoList = () => {
-	api.get('/').then(({ data }) => {
+	api.get('/todoshhh/').then(({ data }) => {
 		data.forEach((item) => {
 			item.isEdited = false;
 		});

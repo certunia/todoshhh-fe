@@ -4,6 +4,9 @@
 	import LogoSvg from './logo.svg';
 	import SettingsSvg from './settings.svg';
 	import MainLogo from '../../icons/MainLogo.svelte';
+	import { getUser, user } from '../../../store/user.js';
+
+	getUser();
 </script>
 
 <header class="header">
@@ -16,7 +19,7 @@
 	<div class="header__right">
 		<input id="toggle" class="toggle" type="checkbox">
 
-		<a href="/">
+		<a href="http://localhost:3000/auth/google">
 			<AccountSvg alt="account" />
 		</a>
 		<a href="/">
