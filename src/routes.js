@@ -1,4 +1,4 @@
-import Main from './components/Main.svelte'
+import Main from './views/Main.svelte'
 // import EmployeesIndex from './views/admin/employees/index.svelte'
 
 // function userIsAdmin() {

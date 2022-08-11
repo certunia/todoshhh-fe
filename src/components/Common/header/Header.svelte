@@ -20,7 +20,11 @@
 		<input id="toggle" class="toggle" type="checkbox">
 
 		<a href="http://localhost:3000/auth/google">
-			<AccountSvg alt="account" />
+			{#if user}
+				<p>asdf</p>
+			{:else}
+				<AccountSvg alt="account" />
+			{/if}
 		</a>
 		<a href="/">
 			<SettingsSvg alt="settings" />

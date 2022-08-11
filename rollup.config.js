@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import babel from 'rollup-plugin-babel';
 import { svelteSVG } from 'rollup-plugin-svelte-svg';
 import scss from 'rollup-plugin-scss';
 import sveltePreprocess from 'svelte-preprocess';
@@ -69,7 +70,12 @@ export default {
 			browser: true,
 			dedupe: ['svelte']
 		}),
-		commonjs(),
+		commonjs({
+			include: 'node_modules/**',
+		}),
+		babel({
+			exclude: 'node_modules/**',
+		}),
 
 		!production && serve(),
 

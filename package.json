@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear --port 8089"
+    "start": "sirv public -s --no-clear --port 8089"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
@@ -26,13 +26,15 @@
   },
   "dependencies": {
     "@rollup/plugin-replace": "^4.0.0",
+    "@spaceavocado/svelte-router": "^1.0.16",
     "axios": "^0.27.2",
     "dayjs": "^1.11.0",
     "dotenv": "^16.0.1",
+    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-svelte-svg": "^1.0.0-beta.6",
     "sirv-cli": "^2.0.0",
     "svelte-icons": "^2.1.0",
-    "svelte-router-spa": "^6.0.3",
+    "svelte-router": "^3.0.0-alpha.2",
     "svelte-time": "^0.6.1"
   }
 }
