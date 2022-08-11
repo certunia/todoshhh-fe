@@ -2,7 +2,11 @@ import axios from "axios";
 
 const api = axios.create();
 
-api.defaults.baseURL = process.env.API_URL;
+console.log('env');
+console.log(import.meta.env);
+console.log('env');
+
+api.defaults.baseURL = import.meta.env.VITE_API_URL;
 api.defaults.withCredentials = true;
 api.defaults.credentials = 'include';
 

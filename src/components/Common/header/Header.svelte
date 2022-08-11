@@ -1,8 +1,8 @@
 <script>
 	// import { page } from '$app/stores';
-	import AccountSvg from './account.svg';
-	import LogoSvg from './logo.svg';
-	import SettingsSvg from './settings.svg';
+	import AccountSvg from './account.svelte';
+	import LogoSvg from './logo.svelte';
+	import SettingsSvg from './settings.svelte';
 	import MainLogo from '../../icons/MainLogo.svelte';
 	import { getUser, user } from '../../../store/user.js';
 
