@@ -1,8 +1,11 @@
 <script>
-	import { Router } from 'svelte-router-spa'
-	import { routes } from './routes'
+	// import createRouter from '@spaceavocado/svelte-router';
+	// import RouterView from '@spaceavocado/svelte-router/component/view';
+
+	// import Main from './views/Main.svelte';
+	// import Profile from './popups/Profile.svelte';
 </script>
 
 <div>
-	<Router {routes} />
+	DDDDDD
 </div>

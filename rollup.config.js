@@ -1,9 +1,9 @@
 import svelte from 'rollup-plugin-svelte';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import babel from 'rollup-plugin-babel';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import babel from 'rollup-plugin-babel';
 import { svelteSVG } from 'rollup-plugin-svelte-svg';
 import scss from 'rollup-plugin-scss';
 import sveltePreprocess from 'svelte-preprocess';
