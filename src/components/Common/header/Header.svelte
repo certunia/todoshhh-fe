@@ -5,6 +5,7 @@
 	import SettingsSvg from './settings.svelte';
 	import MainLogo from '../../icons/MainLogo.svelte';
 	import { getUser, user } from '../../../store/user.js';
+	import RouterLink from '@spaceavocado/svelte-router/component/link';
 
 	getUser();
 </script>
@@ -19,13 +20,13 @@
 	<div class="header__right">
 		<input id="toggle" class="toggle" type="checkbox">
 
-		<a href="http://localhost:3000/auth/google">
+		<RouterLink to="/profile">
 			{#if user}
 				<p>asdf</p>
 			{:else}
 				<AccountSvg alt="account" />
 			{/if}
-		</a>
+		</RouterLink>
 		<a href="/">
 			<SettingsSvg alt="settings" />
 		</a>
@@ -67,7 +68,6 @@
 		outline: none;
 		transition: all 500ms;
 		width: var(--size);
-		z-index: 1;
 
 		&:checked {
 			--ray-size: calc(var(--size) * -0.4);

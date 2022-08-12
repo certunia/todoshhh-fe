@@ -3,12 +3,10 @@
     import Music from './Music.svelte';
 </script>
 
-<div class="app-layout">
+<main class="app-layout relative">
     <Header />
 
     <Music />
 
-    <main>
-        <slot />
-    </main>
-</div>
+    <slot />
+</main>

@@ -2,6 +2,7 @@
 	import Layout from './../components/Layout.svelte';
 	import ToDoList from './../components/ToDoList/ToDoList.svelte';
 	import Pomodoro from './../components/Pomodoro/Pomodoro.svelte';
+	import RouterView from '@spaceavocado/svelte-router/component/view';
 </script>
 
 <Layout>
@@ -14,9 +15,15 @@
 			<Pomodoro />
 		</div>
 	</div>
+
+	<RouterView />
 </Layout>
 
 <style lang='scss'>
+		.app-layout {
+				position: relative;
+    }
+
     .main {
         display: flex;
         flex-direction: row;
