@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -34,6 +34,7 @@
     "postcss-load-config": "^4.0.1",
     "rollup-plugin-babel": "^4.4.0",
     "svelte-icons": "^2.1.0",
-    "svelte-time": "^0.6.1"
+    "svelte-time": "^0.6.1",
+    "vite-plugin-mkcert": "^1.9.0"
   }
 }
