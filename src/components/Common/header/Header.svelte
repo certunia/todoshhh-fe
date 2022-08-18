@@ -8,6 +8,12 @@
 	import RouterLink from '@spaceavocado/svelte-router/component/link';
 
 	getUser();
+
+	let userValue;
+
+	user.subscribe(value => {
+		userValue = value;
+	});
 </script>
 
 <header class="header">
@@ -20,20 +26,23 @@
 	<div class="header__right">
 		<input id="toggle" class="toggle" type="checkbox">
 
-		<RouterLink to="/profile">
-			{#if user}
-				<p>asdf</p>
-			{:else}
+		{#if Object.keys(userValue).length === 0}
+			<RouterLink to="/login">
 				<AccountSvg alt="account" />
-			{/if}
-		</RouterLink>
-		<a href="/">
+			</RouterLink>
+		{:else}
+			<RouterLink to="/profile">
+				<img class='header__avatar' src={userValue.image} alt=''>
+			</RouterLink>
+		{/if}
+
+		<RouterLink to="/settings">
 			<SettingsSvg alt="settings" />
-		</a>
+		</RouterLink>
 	</div>
 </header>
 
-<style lang="scss">
+<style lang="scss" global>
 	.header {
 		align-items: center;
 		background-color: $c-special;
@@ -43,6 +52,12 @@
 		padding: 0 40px;
 		height: 53px;
 	}
+
+	.header__avatar {
+			height: 24px;
+			width: 24px;
+			border-radius: 50%;
+  }
 
 	.header__right {
 		display: flex;
