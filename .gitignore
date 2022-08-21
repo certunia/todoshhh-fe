@@ -9,3 +9,4 @@
 !.env.example
 .vercel
 .output
+/package-lock.json

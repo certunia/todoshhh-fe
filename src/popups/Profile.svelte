@@ -18,7 +18,7 @@
 
 <PopupBase title='Profile' to='/'>
 	<div class="flex items-center justify-center h-full">
-		<form class='w100 mr-8'>
+		<form class='w100 mr-8 profile__form'>
 			<Input placeholder='Email' id='email' type='email'/>
 
 			<Input placeholder='Names' id='names' type='text'/>
@@ -43,5 +43,9 @@
 			border-radius: 50%;
 			margin: 0 0 20px 0;
 			width: 180px;
+  }
+
+	.profile__form {
+			max-width: 290px;
   }
 </style>

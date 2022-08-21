@@ -36,9 +36,9 @@
 			</RouterLink>
 		{/if}
 
-		<RouterLink to="/settings">
-			<SettingsSvg alt="settings" />
-		</RouterLink>
+<!--		<RouterLink to="/settings">-->
+<!--			<SettingsSvg alt="settings" />-->
+<!--		</RouterLink>-->
 	</div>
 </header>
 
