@@ -4,9 +4,10 @@
     import ThreeDots from '../ui/ThreeDots.svelte';
     import Dropdown from '../ui/Dropdown.svelte';
     import IconAdd from '../icons/Add.svelte';
-    import { getTodoList, todoList } from '../../store/todoList.js';
+    import { getTodoList, addItem, todoList } from '../../store/todoList.js';
 
     getTodoList()
+    addItem()
 
     let hovering = false;
     let field;
@@ -78,7 +79,7 @@
     </div>
 
     <div class='todolist-field'>
-        {#each $todoList as n, index  (n._id)}
+        {#each $todoList as n, index  (index)}
             <div
               class="todolist-item"
               animate:flip

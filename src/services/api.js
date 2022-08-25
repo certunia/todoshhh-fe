@@ -1,42 +1,31 @@
-import axios from "axios";
+const baseUrl = import.meta.env.VITE_API_URL;
 
-const api = axios.create();
+const api = async (method, path, data) => {
+	try {
+		const url = baseUrl + '/' + path;
+		const _method = method.toUpperCase();
+		const options = {
+			method: _method, // *GET, POST, PUT, DELETE, etc.
+			mode: 'cors', // no-cors, *cors, same-origin
+			cache: 'no-store', // *default, no-cache, reload, force-cache, only-if-cached
+			credentials: 'include', // include, *same-origin, omit
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		}
 
-api.defaults.baseURL = import.meta.env.VITE_API_URL;
-api.defaults.withCredentials = true;
-api.defaults.credentials = 'include';
+		if (data) {
+			options.body = JSON.stringify({text: 'Klaus', listId: '0'}) // body data type must match "Content-Type" header
+		}
 
-// interceptor to catch errors
-const errorInterceptor = error => {
-	// window.alert('Server error...')
+		const response = await fetch(url, options);
 
-	// switch(error.response.status) {
-	// 	case 400:
-	// 		console.log('error 400');
-	// 		break;
-	//
-	// 	default:
-	// 		console.log('server error');
-	// 		break;
-	// }
-
-	return Promise.reject(error);
-}
-
-// Interceptor for responses
-const responseInterceptor = response => {
-	switch(response.status) {
-		case 200:
-			// yay!
-			break;
-		// any other cases
-		default:
-		// default case
+		return await response.json();
 	}
-
-	return response;
-}
-
-api.interceptors.response.use(responseInterceptor, errorInterceptor);
+	catch(error) {
+		console.log(`response error: ${error}`);
+		throw Error()
+	}
+};
 
 export default api;

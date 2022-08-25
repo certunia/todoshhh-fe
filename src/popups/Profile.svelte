@@ -2,10 +2,9 @@
 	import PopupBase from './PopupBase.svelte'
 	import Input from '../components/ui/Input.svelte'
 	import Button from '../components/ui/Button.svelte'
-	import IconGoogle from '../components/icons/Google.svelte'
-	import RouterLink from '@spaceavocado/svelte-router/component/link';
 
 	const googleAuthURL = import.meta.env.VITE_GOOGLE_AUTH_URL;
+	const logoutURL = import.meta.env.VITE_LOGOUT_URL;
 
 	import { user } from '../store/user.js';
 
@@ -33,7 +32,7 @@
 		<div class='flex flex-col ml-8'>
 			<img class='profile__avatar' src={userValue.image} alt=''>
 
-			<RouterLink to='/logout'>Logout</RouterLink>
+			<a class='text-right' href={ logoutURL }>Logout</a>
 		</div>
 	</div>
 </PopupBase>
