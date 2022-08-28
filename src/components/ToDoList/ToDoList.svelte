@@ -4,10 +4,9 @@
     import ThreeDots from '../ui/ThreeDots.svelte';
     import Dropdown from '../ui/Dropdown.svelte';
     import IconAdd from '../icons/Add.svelte';
-    import { getTodoList, addItem, todoList } from '../../store/todoList.js';
+    import { getTodoList, todoList } from '../../store/todoList.js';
 
-    getTodoList()
-    addItem()
+    getTodoList();
 
     let hovering = false;
     let field;
@@ -61,9 +60,42 @@
         $todoList[$todoList.length - 1].isEdited = true;
     }
 
-    const items = [{
-        href: '/profile',
+    function deleteItem() {
+        console.log('deleteItem');
+    }
+
+    function editItem() {
+        console.log('editItem');
+    }
+
+    function eventHandler(event) {
+        switch(event.detail.eventName) {
+            case 'edit': {
+                editItem(event.detail.itemId);
+                break;
+            }
+            case 'delete': {
+                deleteItem(event.detail.itemId);
+                break;
+            }
+        }
+    }
+
+    const listOptions = [{
+        eventName: 'opop',
         text: 'asdf'
+    }, {
+        eventName: 'opop2',
+        text: 'asdf'
+    }]
+
+    const itemOptions = [{
+        // link: '/profile',
+        eventName: 'edit',
+        text: 'edit'
+    }, {
+        eventName: 'delete',
+        text: 'delete'
     }]
 </script>
 
@@ -71,9 +103,8 @@
     <div class='todolist-header'>
         ToDo
 
-        <Dropdown {items}>
+        <Dropdown items={listOptions}>
             <ThreeDots>
-
             </ThreeDots>
         </Dropdown>
     </div>
@@ -94,10 +125,14 @@
                     {n.text}
                 </Checkbox>
 
-                {#if !n.isEdited}
-                    <ThreeDots isColored>
-                    </ThreeDots>
-                {/if}
+                <div class='todolist-options'>
+                    {#if !n.isEdited}
+                        <Dropdown items={itemOptions} on:eventHandler={eventHandler}>
+                            <ThreeDots isColored>
+                            </ThreeDots>
+                        </Dropdown>
+                    {/if}
+                </div>
             </div>
         {/each}
 
@@ -178,20 +213,22 @@
             position: relative;
             transition: $transition;
 
-            .ui-three-dots {
-                display: none !important;
-                transition: $transition;
-                position: absolute !important;
-                top: 13px;
-                right: 20px;
+            &:hover {
+                .todolist-options {
+                    display: block;
+                }
             }
+        }
+
+        &-options {
+            display: none;
+            transition: $transition;
+            position: absolute !important;
+            top: 20px;
+            right: 20px;
 
             &:hover {
                 background-color: $c-hover;
-
-                .ui-three-dots {
-                    display: block !important;
-                }
             }
         }
 
