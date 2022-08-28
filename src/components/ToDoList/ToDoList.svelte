@@ -4,7 +4,7 @@
     import ThreeDots from '../ui/ThreeDots.svelte';
     import Dropdown from '../ui/Dropdown.svelte';
     import IconAdd from '../icons/Add.svelte';
-    import { getTodoList, todoList } from '../../store/todoList.js';
+    import { getTodoList, deleteItem, todoList } from '../../store/todoList.js';
 
     getTodoList();
 
@@ -60,22 +60,22 @@
         $todoList[$todoList.length - 1].isEdited = true;
     }
 
-    function deleteItem() {
-        console.log('deleteItem');
-    }
-
-    function editItem() {
+    function _editItem() {
         console.log('editItem');
     }
 
     function eventHandler(event) {
-        switch(event.detail.eventName) {
+        const eventName = event.detail.eventName;
+        const itemId = event.detail.itemIndex;
+        const listId = event.detail.listIndex;
+
+        switch(eventName) {
             case 'edit': {
-                editItem(event.detail.itemId);
+                _editItem(event.detail.itemId);
                 break;
             }
             case 'delete': {
-                deleteItem(event.detail.itemId);
+                deleteItem(listId, itemId);
                 break;
             }
         }

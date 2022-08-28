@@ -63,7 +63,7 @@
 					{:else}
 						<div
 							class='block px-4 py-2 hover:bg-zinc-200'
-							on:click|once={handleClick({eventName: item.eventName, itemId: i, listId: 0})}
+							on:click|once={handleClick({eventName: item.eventName, itemIndex: i, listIndex: 0})}
 						>
 							{item.text}
 						</div>

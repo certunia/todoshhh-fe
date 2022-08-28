@@ -31,7 +31,7 @@ export const addItem = () => {
 }
 
 export const deleteItem = (listIndex, itemIndex) => {
-	api('delete',`todoshhh/${listId}/delete-item/${itemIndex}`)
+	api('delete',`todoshhh/${listIndex}/delete-item/${itemIndex}`)
 		.then((data) => {
 			todoList.set(data[0]);
 		})
