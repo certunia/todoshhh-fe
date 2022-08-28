@@ -20,11 +20,18 @@ const api = async (method, path, data) => {
 
 		const response = await fetch(url, options);
 
+		if (!response.ok) {
+			const errorText = await response.json();
+			if (errorText?.message?.length) {
+				throw Error(errorText);
+			}
+			throw Error('Server error');
+		}
+
 		return await response.json();
 	}
 	catch(error) {
-		console.log(`response error: ${error}`);
-		throw Error()
+		throw Error(error);
 	}
 };
 
