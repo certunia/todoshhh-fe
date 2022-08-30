@@ -7,6 +7,7 @@
 	const dispatch = createEventDispatcher();
 
 	export let items;
+	export let dropdownInfo;
 
 	let show = false; // menu state
 	let menu = null; // menu wrapper DOM reference
@@ -36,7 +37,13 @@
 	});
 
 	function handleClick(eventName) {
-		dispatch('eventHandler', eventName);
+		dispatch('eventHandler',
+			{
+				...eventName,
+				...dropdownInfo
+			});
+
+		show = false;
 	}
 </script>
 
@@ -63,7 +70,7 @@
 					{:else}
 						<div
 							class='block px-4 py-2 hover:bg-zinc-200'
-							on:click|once={handleClick({eventName: item.eventName, itemIndex: i, listIndex: 0})}
+							on:click|once={handleClick({eventName: item.eventName})}
 						>
 							{item.text}
 						</div>

@@ -4,7 +4,7 @@
     import ThreeDots from '../ui/ThreeDots.svelte';
     import Dropdown from '../ui/Dropdown.svelte';
     import IconAdd from '../icons/Add.svelte';
-    import { getTodoList, deleteItem, todoList } from '../../store/todoList.js';
+    import { getTodoList, changeItem, addItem, deleteItem, todoList } from '../../store/todoList.js';
 
     getTodoList();
 
@@ -35,15 +35,20 @@
 
     function handleValue(event) {
         const detail = event.detail;
+        let text = detail.text;
 
-        detail.text = detail.text.replace(/&nbsp;/g, ' ');
+        text = text.replace(/&nbsp;/g, ' ');
 
-        if (detail.text.trim().length === 0) {
-            $todoList[detail.index].isEdited = false;
-            $todoList.splice(detail.index, 1);
+        if (text.trim().length === 0) {
+            $todoList[detail.itemIndex].isEdited = false;
+            $todoList.pop();
         } else {
-            $todoList[detail.index].text = detail.text;
-            $todoList[detail.index].isEdited = false;
+            addItem(text)
+              .then(() => {
+                setTimeout(() => {
+                    addNewItem()
+                }, 100);
+            });
         }
     }
 
@@ -60,22 +65,26 @@
         $todoList[$todoList.length - 1].isEdited = true;
     }
 
-    function _editItem() {
-        console.log('editItem');
+    function setChecked(event) {
+        const itemIndex = event.detail.itemIndex;
+        const listIndex = event.detail.listIndex;
+        const isDone = event.detail.isDone;
+
+        changeItem(listIndex, itemIndex, { isDone });
     }
 
     function eventHandler(event) {
         const eventName = event.detail.eventName;
-        const itemId = event.detail.itemIndex;
-        const listId = event.detail.listIndex;
+        const itemIndex = event.detail.itemIndex;
+        const listIndex = event.detail.listIndex;
 
         switch(eventName) {
             case 'edit': {
-                _editItem(event.detail.itemId);
+                $todoList[itemIndex].isEdited = true;
                 break;
             }
             case 'delete': {
-                deleteItem(listId, itemId);
+                deleteItem(listIndex, itemIndex);
                 break;
             }
         }
@@ -121,13 +130,25 @@
               on:dragenter={() => hovering = index}
               class:is-active={hovering === index}
             >
-                <Checkbox {...n} {index} on:setValue={handleValue} bind:this={field}>
-                    {n.text}
+                <Checkbox
+                  {...n}
+                  on:setValue={handleValue}
+                  bind:this={field}
+                  on:addNewItem={addNewItem}
+                  on:setChecked={setChecked}
+                  isAddingNewItem={ $todoList.length - 1 === index }
+                  itemIndex={ index }
+                  listIndex=0
+                >
+                    {@html n.text}
                 </Checkbox>
 
                 <div class='todolist-options'>
                     {#if !n.isEdited}
-                        <Dropdown items={itemOptions} on:eventHandler={eventHandler}>
+                        <Dropdown
+                          items={itemOptions}
+                          dropdownInfo={{itemIndex: index, listIndex: 0}}
+                          on:eventHandler={eventHandler}>
                             <ThreeDots isColored>
                             </ThreeDots>
                         </Dropdown>

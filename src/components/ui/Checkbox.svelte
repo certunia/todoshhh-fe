@@ -2,30 +2,40 @@
     export let isDone;
     export let isEdited;
     export let text;
-    export let index;
+    export let itemIndex;
+    export let listIndex;
+    export let isAddingNewItem;
     let input;
 
     import { createEventDispatcher } from 'svelte';
-
     const dispatch = createEventDispatcher();
 
-    const changeVal = () => {
-        console.log('asdf')
+    const changeVal = (e) => {
+        dispatch('setChecked', { itemIndex, listIndex, isDone: e.target.checked })
     }
 
     const onKeyPress = (event) => {
         if (event.key === 'Enter' && event.shiftKey) {
-            console.log('Add new one here');
+            return null;
+        } else if (event.key === 'Enter') {
+            isEdited = false; // prevent new line
+
         }
     }
 
     const stopEditing = () => {
         isEdited = false;
-        dispatch('setValue', { text, index });
+        dispatch('setValue', { text, itemIndex });
     }
 
     export function focus() {
         input.focus();
+    }
+
+    function init(el){
+        setTimeout(() => {
+            el.focus()
+        }, 100);
     }
 </script>
 
@@ -40,6 +50,7 @@
                   on:blur={stopEditing}
                   bind:innerHTML={text}
                   bind:this={input}
+                  use:init
                 >
                     {text}
                 </label>
@@ -49,7 +60,7 @@
             <slot />
         {/if}
 
-        <input type="checkbox" checked={isDone} onChange={changeVal}>
+        <input type="checkbox" checked={isDone} on:change={changeVal}>
         <span class="ui-checkbox_checkmark"></span>
     </label>
 </div>

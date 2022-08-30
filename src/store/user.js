@@ -5,9 +5,9 @@ export const user = writable({});
 
 export const getUser = () => {
 	api('get', 'auth/me')
-		// .then(({ data }) => {
-		// 	user.set(data);
-		// })
+		.then((data) => {
+			user.set(data);
+		})
 		// .catch(() => {
 		// 	console.log('err');
 		// })

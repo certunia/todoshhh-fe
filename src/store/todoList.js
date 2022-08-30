@@ -23,11 +23,15 @@ export const addTodoList = () => {
 	// })
 }
 
-export const addItem = () => {
-	api('post','todoshhh/0/add-item', {text: 'Klaus'})
+export const addItem = async (text) => {
+	api('post','todoshhh/0/add-item',{ text })
 		.then((data) => {
 			todoList.set(data[0]);
 		})
+}
+
+export const changeItem = (listIndex, itemIndex, data) => {
+	api('patch', `todoshhh/${listIndex}/${itemIndex}`, data)
 }
 
 export const deleteItem = (listIndex, itemIndex) => {
