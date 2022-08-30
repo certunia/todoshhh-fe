@@ -5,6 +5,8 @@
     import Dropdown from './ui/Dropdown.svelte';
     import IconAdd from './icons/Add.svelte';
     import { getTodoList, changeItem, addItem, deleteItem, todoList } from '../store/todoList';
+    import { crossfade } from 'svelte/transition';
+    import { quintOut } from 'svelte/easing';
 
     getTodoList();
 
@@ -15,9 +17,6 @@
         event.dataTransfer.dropEffect = 'move';
         const start = parseInt(event.dataTransfer.getData("text/plain"));
         const newList = $todoList
-
-        console.log(target + 1);
-        console.log(start);
 
         if (start < target) {
             newList.splice(target + 1, 0, newList[start]);
@@ -35,6 +34,24 @@
         event.dataTransfer.dropEffect = 'move';
         event.dataTransfer.setData('text/plain', i);
     }
+
+    // const [send, receive] = crossfade({
+    //     duration: d => Math.sqrt(d * 200),
+    //
+    //     fallback(node, params) {
+    //         const style = getComputedStyle(node);
+    //         const transform = style.transform === 'none' ? '' : style.transform;
+    //
+    //         return {
+    //             duration: 600,
+    //             easing: quintOut,
+    //             css: t => `
+    //               transform: ${transform} scale(${t});
+    //               opacity: ${t}
+    //             `
+    //         };
+    //     }
+    // });
 
     function handleValue(event) {
         const detail = event.detail;
@@ -122,10 +139,13 @@
     </div>
 
     <div class='todolist-field'>
-        {#each $todoList as n, index  (index)}
+        {#each $todoList as listItem, index  (listItem.id)}
+<!--            in:receive="{{key: index}}"-->
+<!--            out:send="{{key: index}}"-->
             <div
               class="todolist-item"
-              animate:flip="{{duration: 200}}"
+              id={"todolist-item__" + index}
+              animate:flip={{duration: 200}}
               draggable={true}
               on:dragstart={event => dragstart(event, index)}
               on:drop|preventDefault={event => drop(event, index)}
@@ -134,7 +154,7 @@
               class:is-active={hovering === index}
             >
                 <Checkbox
-                  {...n}
+                  {...listItem}
                   on:setValue={handleValue}
                   bind:this={field}
                   on:addNewItem={addNewItem}
@@ -143,11 +163,11 @@
                   itemIndex={ index }
                   listIndex=0
                 >
-                    {@html n.text}
+                    {@html listItem.text}
                 </Checkbox>
 
                 <div class='todolist-options'>
-                    {#if !n.isEdited}
+                    {#if !listItem.isEdited}
                         <Dropdown
                           items={itemOptions}
                           dropdownInfo={{itemIndex: index, listIndex: 0}}

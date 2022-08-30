@@ -1,10 +1,9 @@
 <script>
-	export let isColored;
-	export let shadow;
+	export let isColored = false;
 </script>
 
 <div class="ui-three-dots {isColored ? 'ui-three-dots_colored' : '' }">
-	<button class='ui-three-dots__background' style='box-shadow: {shadow}'>
+	<button class='ui-three-dots__background'>
 		<span class='ui-three-dots__btn'>
 			<span></span>
 			<span></span>

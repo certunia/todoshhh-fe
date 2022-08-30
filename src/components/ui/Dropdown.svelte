@@ -7,7 +7,7 @@
 	const dispatch = createEventDispatcher();
 
 	export let items;
-	export let dropdownInfo;
+	export let dropdownInfo = {};
 
 	let show = false; // menu state
 	let menu = null; // menu wrapper DOM reference

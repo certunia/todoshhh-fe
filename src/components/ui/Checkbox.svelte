@@ -1,7 +1,7 @@
 <script>
-    export let isDone;
-    export let isEdited;
-    export let text;
+    export let isDone = false;
+    export let isEdited = false;
+    export let text = '';
     export let itemIndex;
     export let listIndex;
     export let isAddingNewItem;
