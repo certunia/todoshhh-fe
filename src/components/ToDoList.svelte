@@ -1,10 +1,10 @@
 <script>
     import { flip } from 'svelte/animate';
-    import Checkbox from '../ui/Checkbox.svelte';
-    import ThreeDots from '../ui/ThreeDots.svelte';
-    import Dropdown from '../ui/Dropdown.svelte';
-    import IconAdd from '../icons/Add.svelte';
-    import { getTodoList, changeItem, addItem, deleteItem, todoList } from '../../store/todoList.js';
+    import Checkbox from './ui/Checkbox.svelte';
+    import ThreeDots from './ui/ThreeDots.svelte';
+    import Dropdown from './ui/Dropdown.svelte';
+    import IconAdd from './icons/Add.svelte';
+    import { getTodoList, changeItem, addItem, deleteItem, todoList } from '../store/todoList';
 
     getTodoList();
 
@@ -14,16 +14,19 @@
     const drop = (event, target) => {
         event.dataTransfer.dropEffect = 'move';
         const start = parseInt(event.dataTransfer.getData("text/plain"));
-        const newTracklist = $todoList
+        const newList = $todoList
+
+        console.log(target + 1);
+        console.log(start);
 
         if (start < target) {
-            newTracklist.splice(target + 1, 0, newTracklist[start]);
-            newTracklist.splice(start, 1);
+            newList.splice(target + 1, 0, newList[start]);
+            newList.splice(start, 1);
         } else {
-            newTracklist.splice(target, 0, newTracklist[start]);
-            newTracklist.splice(start + 1, 1);
+            newList.splice(target, 0, newList[start]);
+            newList.splice(start + 1, 1);
         }
-        $todoList = newTracklist
+        $todoList = newList
         hovering = null
     }
 
@@ -122,7 +125,7 @@
         {#each $todoList as n, index  (index)}
             <div
               class="todolist-item"
-              animate:flip
+              animate:flip="{{duration: 200}}"
               draggable={true}
               on:dragstart={event => dragstart(event, index)}
               on:drop|preventDefault={event => drop(event, index)}

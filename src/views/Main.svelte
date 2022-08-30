@@ -1,6 +1,6 @@
 <script>
 	import Layout from './../components/Layout.svelte';
-	import ToDoList from './../components/ToDoList/ToDoList.svelte';
+	import ToDoList from './../components/ToDoList.svelte';
 	import Pomodoro from './../components/Pomodoro/Pomodoro.svelte';
 	import RouterView from '@spaceavocado/svelte-router/component/view';
 </script>
