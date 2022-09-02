@@ -47,7 +47,6 @@
                   contenteditable="true"
                   on:keypress={onKeyPress}
                   on:blur={stopEditing}
-                  on:input={hmm}
                   bind:innerHTML={text}
                   bind:this={input}
                   use:init
