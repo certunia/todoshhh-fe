@@ -10,6 +10,7 @@
 
     getTodoList();
 
+    let isAddingNew = false;
     let hovering = false;
     let field;
 
@@ -55,6 +56,7 @@
         text = text.replace(/&nbsp;/g, ' ');
 
         if (text.trim().length === 0) {
+            isAddingNew = false;
             $todoList[itemIndex].isEdited = false;
             $todoList.pop();
         } else {
@@ -70,6 +72,11 @@
                 changeItem(listIndex, itemIndex, { text });
             }
         }
+    }
+
+    function buttonNewItem() {
+        isAddingNew = true;
+        addNewItem();
     }
 
     function addNewItem() {
@@ -157,7 +164,7 @@
                   bind:this={field}
                   on:addNewItem={addNewItem}
                   on:setChecked={setChecked}
-                  isAddingNewItem={ $todoList.length - 1 === index }
+                  isAddingNewItem={isAddingNew}
                   itemIndex={ index }
                   listIndex=0
                 >
