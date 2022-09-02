@@ -48,7 +48,6 @@
 
     function handleValue(event) {
         const detail = event.detail;
-        const isAddingNewItem = detail.isAddingNewItem;
         const itemIndex = detail.itemIndex;
         const listIndex = detail.listIndex;
         let text = detail.text;
@@ -60,7 +59,7 @@
             $todoList[itemIndex].isEdited = false;
             $todoList.pop();
         } else {
-            if (isAddingNewItem) {
+            if (isAddingNew) {
                 addItem(text).then(() => {
                     setTimeout(() => {
                         addNewItem()
@@ -164,7 +163,6 @@
                   bind:this={field}
                   on:addNewItem={addNewItem}
                   on:setChecked={setChecked}
-                  isAddingNewItem={isAddingNew}
                   itemIndex={ index }
                   listIndex=0
                 >
@@ -187,7 +185,7 @@
 
         <button
           class='todolist-add-item'
-          on:click={addNewItem}
+          on:click={buttonNewItem}
         >
             <IconAdd />
 
@@ -263,6 +261,8 @@
             transition: $transition;
 
             &:hover {
+                background-color: $c-hover;
+
                 .todolist-item__options {
                     display: block;
                 }

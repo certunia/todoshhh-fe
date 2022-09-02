@@ -4,7 +4,6 @@
     export let text = '';
     export let itemIndex;
     export let listIndex;
-    export let isAddingNewItem; // true if it's the last item
     let input;
 
     import { createEventDispatcher } from 'svelte';
@@ -18,13 +17,13 @@
         if (event.key === 'Enter' && event.shiftKey) {
             return null;
         } else if (event.key === 'Enter') {
-            // isEdited = false; // prevent new line
+            isEdited = false; // prevent new line
         }
     }
 
     const stopEditing = () => {
         isEdited = false;
-        dispatch('setValue', { text, itemIndex, listIndex, isAddingNewItem });
+        dispatch('setValue', { text, itemIndex, listIndex });
     }
 
     export function focus() {
@@ -72,7 +71,7 @@
     //font-size: 14px;
     font-weight: 600;
     line-height: 32px;
-    padding: 18px 7px 18px 48px;
+    padding: 14px 7px 14px 48px;
     position: relative;
     text-align: left;
     -webkit-user-select: none;
@@ -116,7 +115,7 @@
   .ui-checkbox_checkmark {
     border-radius: 4px;
     position: absolute;
-    top: 17px;
+    top: 15px;
     left: 0;
     height: 32px;
     width: 32px;
