@@ -4,7 +4,7 @@
     import ThreeDots from './ui/ThreeDots.svelte';
     import Dropdown from './ui/Dropdown.svelte';
     import IconAdd from './icons/Add.svelte';
-    import { getTodoList, changeItem, addItem, deleteItem, todoList } from '../store/todoList';
+    import { getTodoList, changeItem, addItem, deleteItem, swapItems, todoList } from '../store/todoList';
     import { crossfade } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
 
@@ -18,6 +18,17 @@
         const start = parseInt(event.dataTransfer.getData("text/plain"));
         const newList = $todoList
 
+        const options = {
+            listIndex1: 0,
+            itemIndex1: start,
+            listIndex2: 0,
+            itemIndex2: target
+        };
+
+        console.log(start);
+
+        // swapItems(options);
+
         if (start < target) {
             newList.splice(target + 1, 0, newList[start]);
             newList.splice(start, 1);
@@ -29,29 +40,12 @@
         hovering = null
     }
 
-    const dragstart = (event, i) => {
+    const dragstart = (event, i, id) => {
+        document.querySelector(id).classList.add('todolist-item__dragged')
         event.dataTransfer.effectAllowed = 'move';
         event.dataTransfer.dropEffect = 'move';
         event.dataTransfer.setData('text/plain', i);
     }
-
-    // const [send, receive] = crossfade({
-    //     duration: d => Math.sqrt(d * 200),
-    //
-    //     fallback(node, params) {
-    //         const style = getComputedStyle(node);
-    //         const transform = style.transform === 'none' ? '' : style.transform;
-    //
-    //         return {
-    //             duration: 600,
-    //             easing: quintOut,
-    //             css: t => `
-    //               transform: ${transform} scale(${t});
-    //               opacity: ${t}
-    //             `
-    //         };
-    //     }
-    // });
 
     function handleValue(event) {
         const detail = event.detail;
@@ -140,14 +134,12 @@
 
     <div class='todolist-field'>
         {#each $todoList as listItem, index  (listItem.id)}
-<!--            in:receive="{{key: index}}"-->
-<!--            out:send="{{key: index}}"-->
             <div
               class="todolist-item"
               id={"todolist-item__" + index}
-              animate:flip={{duration: 200}}
+              animate:flip={{duration: 500}}
               draggable={true}
-              on:dragstart={event => dragstart(event, index)}
+              on:dragstart={event => dragstart(event, index, "#todolist-item__" + index)}
               on:drop|preventDefault={event => drop(event, index)}
               ondragover="return false"
               on:dragenter={() => hovering = index}
@@ -166,7 +158,7 @@
                     {@html listItem.text}
                 </Checkbox>
 
-                <div class='todolist-options'>
+                <div class='todolist-item__options'>
                     {#if !listItem.isEdited}
                         <Dropdown
                           items={itemOptions}
@@ -258,13 +250,19 @@
             transition: $transition;
 
             &:hover {
-                .todolist-options {
+                .todolist-item__options {
                     display: block;
+                }
+            }
+
+            &__dragged {
+                .todolist-item__options {
+                    //display: none;
                 }
             }
         }
 
-        &-options {
+        &-item__options {
             display: none;
             transition: $transition;
             position: absolute !important;

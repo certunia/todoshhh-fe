@@ -28,6 +28,13 @@ export const changeItem = (listIndex, itemIndex, data) => {
 	api('patch', `todoshhh/${listIndex}/${itemIndex}`, data)
 }
 
+export const swapItems = (data) => {
+	api('patch', `todoshhh/swap-items`, data)
+		.then((data) => {
+			setToDoList(data[0]);
+		})
+}
+
 export const deleteItem = (listIndex, itemIndex) => {
 	api('delete',`todoshhh/${listIndex}/delete-item/${itemIndex}`)
 		.then((data) => {
@@ -36,9 +43,15 @@ export const deleteItem = (listIndex, itemIndex) => {
 }
 
 function setToDoList(arr) {
+	const array = [];
 	arr.forEach((item) => {
+		if (item === null)
+		{
+			item = {};
+		}
 		item.id = Math.random();
 		item.isEdited = false;
+		array.push(item);
 	});
-	todoList.set(arr);
+	todoList.set(array);
 }
