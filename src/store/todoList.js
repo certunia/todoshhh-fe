@@ -26,13 +26,13 @@ export const addItem = async (text) => {
 
 export const changeItem = (listIndex, itemIndex, data) => {
 	api('patch', `todoshhh/${listIndex}/${itemIndex}`, data)
+		.then((data) => {
+			setToDoList(data[0]);
+		})
 }
 
 export const swapItems = (data) => {
 	api('patch', `todoshhh/swap-items`, data)
-		.then((data) => {
-			setToDoList(data[0]);
-		})
 }
 
 export const deleteItem = (listIndex, itemIndex) => {

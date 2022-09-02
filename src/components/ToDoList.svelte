@@ -25,9 +25,7 @@
             itemIndex2: target
         };
 
-        console.log(start);
-
-        // swapItems(options);
+        swapItems(options);
 
         if (start < target) {
             newList.splice(target + 1, 0, newList[start]);
@@ -49,20 +47,28 @@
 
     function handleValue(event) {
         const detail = event.detail;
+        const isAddingNewItem = detail.isAddingNewItem;
+        const itemIndex = detail.itemIndex;
+        const listIndex = detail.listIndex;
         let text = detail.text;
 
         text = text.replace(/&nbsp;/g, ' ');
 
         if (text.trim().length === 0) {
-            $todoList[detail.itemIndex].isEdited = false;
+            $todoList[itemIndex].isEdited = false;
             $todoList.pop();
         } else {
-            addItem(text)
-              .then(() => {
-                setTimeout(() => {
-                    addNewItem()
-                }, 100);
-            });
+            if (isAddingNewItem) {
+                addItem(text).then(() => {
+                    setTimeout(() => {
+                        addNewItem()
+                    }, 100);
+                });
+            }
+            else {
+                $todoList[itemIndex].text = text;
+                changeItem(listIndex, itemIndex, { text });
+            }
         }
     }
 

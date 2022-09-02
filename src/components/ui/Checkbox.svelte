@@ -4,7 +4,7 @@
     export let text = '';
     export let itemIndex;
     export let listIndex;
-    export let isAddingNewItem;
+    export let isAddingNewItem; // true if it's the last item
     let input;
 
     import { createEventDispatcher } from 'svelte';
@@ -18,14 +18,13 @@
         if (event.key === 'Enter' && event.shiftKey) {
             return null;
         } else if (event.key === 'Enter') {
-            isEdited = false; // prevent new line
-
+            // isEdited = false; // prevent new line
         }
     }
 
     const stopEditing = () => {
         isEdited = false;
-        dispatch('setValue', { text, itemIndex });
+        dispatch('setValue', { text, itemIndex, listIndex, isAddingNewItem });
     }
 
     export function focus() {
@@ -48,6 +47,7 @@
                   contenteditable="true"
                   on:keypress={onKeyPress}
                   on:blur={stopEditing}
+                  on:input={hmm}
                   bind:innerHTML={text}
                   bind:this={input}
                   use:init
