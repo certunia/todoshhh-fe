@@ -211,10 +211,10 @@
             }
 
             &:hover {
-                color: $cd-special;
+                color: $c-special__dark;
 
                 .icon-add__circle {
-                    fill: $cd-special;
+                    fill: $c-special__dark;
                 }
 
                 .icon-add__plus {

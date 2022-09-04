@@ -13,7 +13,7 @@
         }
 
 				&__plus {
-            fill: $cd-special;
+            fill: $c-special__dark;
             transition: $transition;
         }
 		}
