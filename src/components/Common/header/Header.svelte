@@ -65,7 +65,7 @@
 <style lang="scss" global>
     .header {
         align-items: center;
-        background-color: var(--c-special);
+        background-color: var(--c-primary);
         display: flex;
         justify-content: space-between;
         margin: 0;

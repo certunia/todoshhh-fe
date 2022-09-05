@@ -134,8 +134,8 @@
     }]
 </script>
 
-<div class="todolist">
-    <div class='todolist-header'>
+<div class="todolist transition-all bg-white dark:bg-dark">
+    <div class='todolist-header transition-all'>
         ToDo
 
         <Dropdown items={listOptions}>
@@ -147,7 +147,7 @@
     <div class='todolist-field'>
         {#each $todoList as listItem, index  (listItem.id)}
             <div
-              class="todolist-item"
+              class="todolist-item dark:text-white dark:hover:bg-hover__dark"
               id={"todolist-item__" + index}
               animate:flip={{duration: 500}}
               draggable={true}
@@ -204,6 +204,7 @@
             cursor: pointer;
             display: flex;
             font-size: 19px;
+            margin: 14px 0 0 14px;
             transition: $transition;
 
             .icon-add {
@@ -229,8 +230,8 @@
 
         &-header {
             align-items: center;
-            background-color: $c-special;
-            border: 4px solid $c-special;
+            background-color: var(--c-primary);
+            border: 4px solid var(--c-primary);
             border-radius: 20px 20px 0 0;
             color: #fff;
             display: flex;

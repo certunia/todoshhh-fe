@@ -8,7 +8,7 @@
 <style lang="scss" global>
 		.icon-add {
 				&__circle {
-						fill: #ffffff;
+						fill: transparent;
             transition: $transition;
         }
 

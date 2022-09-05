@@ -1,11 +1,36 @@
 $family--default: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,Arial, sans-serif,"Apple Color Emoji", "Segoe UI Emoji";
 
 // c - color
-
+// __light - is for light theme
+// __dark  - is for dark theme
 :root {
-    --c-special: #119DA4;
-    --c-special__inversable: #119DA4;
-    --font-size:12px;
+    --c-primary:                #119DA4;
+    --c-primary__light:         #119DA4;
+    --c-primary__dark:          #F17105;
+
+    --c-secondary:              rgba(17, 157, 164, 0.65);
+    --c-secondary__light:       rgba(17, 157, 164, 0.65);
+    --c-secondary__dark:        #F17105;
+
+    --c-border:                 #CECCCE;
+    --c-border__light:          #646464;
+    --c-border__dark:           #646464;
+
+    --c-bg:                     #FFF;
+    --c-bg__light:              #FFF;
+    --c-bg__dark:               #282828;
+
+    --c-bg--input:              #FFF;
+    --c-bg--input__light:       #FFF;
+    --c-bg--input__dark:        #282828;
+
+    --c-hover:                  #F4F5F7;
+    --c-hover__light:           #F4F5F7;
+    --c-hover__dark:            #363636;
+
+    --c-text:                   #282828;
+    --c-text__light:            #282828;
+    --c-text__dark:             rgba(255, 255, 255, 0.87);
 }
 
 $c-border:                  #CECCCE;
@@ -37,9 +62,6 @@ $tablet:    'only screen and (max-width: 1023px)';
 $mobile:    'only screen and (max-width: 767px)';
 
 
-:export {
-    cHover: $c-hover;
-}
 
 
 //$c_input__default:          #F7F2EE;

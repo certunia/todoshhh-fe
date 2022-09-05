@@ -44,10 +44,10 @@
     }
 </script>
 
-<div class="pomodoro">
+<div class="pomodoro transition-all bg-white dark:bg-dark">
     <div class='pomodoro__header'>
 
-        <div class="pomodoro__sessions">
+        <div class="pomodoro__sessions dark:text-white">
             <p>Work sessions</p>
 
             <span class="pomodoro__sessions_current"><span>{currentSession + 1}</span>/{timeArr.length}</span>

@@ -22,20 +22,20 @@
 						.ui-three-dots {
                 &__btn {
                     span {
-                        background-color: $c-special;
+                        background-color: var(--c-primary);
                     }
                 }
 
                 &__background {
-										background-color: $c-hover;
-										box-shadow: 0 0 16px 8px $c-hover;
+										background-color: inherit;
+										box-shadow: 0 0 16px 8px inherit;
                 }
 						}
 				}
 
 				&__background {
-            background-color: $c-special;
-            box-shadow: 0 0 16px 8px $c-special;
+            background-color: inherit;
+            box-shadow: 0 0 16px 8px inherit;
 				}
 
 				&__btn {

@@ -6,12 +6,12 @@
 </script>
 
 <Layout>
-	<div class="wrap main">
+	<div class="wrap main transition-all bg-white dark:bg-dark">
 		<div class="main-tables">
 			<ToDoList />
 		</div>
 
-		<div class='main-pomodoro'>
+		<div class='main-pomodoro transition-all bg-white dark:bg-dark'>
 			<Pomodoro />
 		</div>
 	</div>
@@ -19,7 +19,7 @@
 	<RouterView />
 </Layout>
 
-<style lang='scss'>
+<style global lang='scss'>
 		.app-layout {
 				position: relative;
     }
