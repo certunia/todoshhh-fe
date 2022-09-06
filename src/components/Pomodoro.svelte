@@ -1,7 +1,7 @@
 <script>
     import { tweened } from 'svelte/motion';
-    import PlayPause from "../ui/PlayPause.svelte"
-    import ThreeDots from '../ui/ThreeDots.svelte'
+    import PlayPause from "./ui/PlayPause.svelte"
+    import ThreeDots from './ui/ThreeDots.svelte'
     // import dayjs from "dayjs";
 
     let isPlay = false;
@@ -105,12 +105,12 @@
         margin: 0 0 0 14px;
 
         span {
-          color: $c_special;
+          color: var(--c-primary);
         }
     }
 
     .pomodoro__timer {
-        color: $c_special;
+        color: var(--c-primary);
         display: flex;
         justify-content: space-between;
         font-size: 47px;
@@ -126,7 +126,7 @@
         @for $i from 1 through 5 {
             span {
                 &:nth-child(#{$i}) {
-                    color: $c_special;
+                    color: var(--c-primary);
                     font-size: calc(53px - 6px * #{$i});
                     opacity: calc(1 / #{$i} + 0.2);
                 }

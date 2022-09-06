@@ -1,10 +1,10 @@
 <script>
-	import AccountSvg from './account.svelte';
-	import LogoSvg from './logo.svelte';
-	import SettingsSvg from './settings.svelte';
-	import MainLogo from '../../icons/MainLogo.svelte';
-	import { getUser, user } from '../../../store/user.js';
-	import { theme, toggleTheme } from '../../../store/theme.js';
+	import AccountSvg from './icons/Account.svelte';
+	// import LogoSvg from './icons/Logo.svelte';
+	// import SettingsSvg from './icons/Settings.svelte';
+	import MainLogo from './icons/MainLogo.svelte';
+	import { getUser, user } from '../store/user.js';
+	import { theme, toggleTheme } from '../store/theme.js';
 	import RouterLink from '@spaceavocado/svelte-router/component/link';
 
 	getUser();
@@ -31,7 +31,7 @@
 
 <header class="header">
 	<div class="header__logo">
-		<a href="/">
+		<a href='/'>
 			<MainLogo />
 		</a>
 	</div>
@@ -159,7 +159,7 @@
     }
 
     .header__theme:checked {
-        background-color: $c-special;
+        background-color: var(--c-primary);;
     }
 
     .header__theme:checked + .header__theme__dark-bg {

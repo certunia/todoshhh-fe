@@ -1,5 +1,5 @@
 <script>
-    import Header from './Common/header/Header.svelte';
+    import Header from './Header.svelte';
     import Music from './Music.svelte';
 </script>
 
