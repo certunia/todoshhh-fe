@@ -119,7 +119,7 @@
     left: 0;
     height: 32px;
     width: 32px;
-    border: 4px solid $c-special;
+    border: 4px solid var(--c-primary);
   }
 
   /* On mouse-over, add a grey background color */
@@ -154,5 +154,12 @@
     background-size: 39px 37px;
     height: 37px;
     width: 39px;
+  }
+
+  .dark .ui-checkbox .ui-checkbox_checkmark:after {
+      background: center no-repeat url("/img/ui/check_white.svg");
+      background-size: 39px 37px;
+      height: 37px;
+      width: 39px;
   }
 </style>

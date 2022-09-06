@@ -49,7 +49,7 @@
             width: 4px;
             height: 50px;
             border-radius: 5px;
-            background-color: $c_special;
+            background-color: var(--c-primary);
             transform-origin: center;
             transition: transform 0.4s ease-in-out, background 0.1s ease-in-out, opacity 0.4s;
         }
