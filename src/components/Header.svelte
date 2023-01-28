@@ -13,11 +13,7 @@
 	let isDark;
 
 	theme.subscribe(value => {
-		if (value === 'dark') {
-			isDark = true// document.querySelector('#header__theme').checked = true
-		} else {
-			isDark = false
-		}
+		isDark = value === 'dark';
 	});
 
 	user.subscribe(value => {
@@ -94,6 +90,7 @@
 
         a {
             margin: 0 0 0 26px;
+						z-index: 1;
         }
     }
 

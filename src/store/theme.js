@@ -32,13 +32,15 @@ let settingsOption = localStorage.getItem('theme');
 
 if (!settingsOption) settingsOption = 'adaptive';
 
-if (settingsOption === 'adaptive') {
-	setPreferedTheme();
-} else if (settingsOption === 'dark' || settingsOption === 'light') {
-	setThemeDark();
-} else{
-	setThemeLight();
-}
+setTimeout(() => {
+	if (settingsOption === 'adaptive') {
+		setPreferedTheme();
+	} else if (settingsOption === 'dark') {
+		setThemeDark();
+	} else{
+		setThemeLight();
+	}
+}, 0)
 
 let themeVal;
 

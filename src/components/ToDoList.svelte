@@ -284,7 +284,7 @@
             right: 20px;
 
             &:hover {
-                background-color: $c-hover;
+                background-color: var(--c-primary);
             }
         }
 
